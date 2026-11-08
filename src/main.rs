@@ -18,7 +18,14 @@ fn main() {
     *counts.entry(word.to_string()).or_insert(0) += 1;
 }
 
-    for (word, count) in &counts {
-    println!("{}: {}", word, count);
-}
-}
+    
+    let mut pairs : Vec<_> = counts.into_iter().collect();
+    
+    pairs.sort_by(|a, b| b.1.cmp(&a.1));
+
+    let n = 3;
+    for (word, counts) in pairs.iter().take(n) {
+        println!("{}: {}", word, counts)
+    }
+
+}  
